@@ -6,12 +6,6 @@ RUN apt-get update -y
 RUN apt-get install -y apt-transport-https ca-certificates
 RUN apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
 RUN echo "deb https://apt.dockerproject.org/repo debian-jessie main" > /etc/apt/sources.list.d/docker.list
-RUN apt-get update
-RUN apt-cache policy docker-engine
-
-RUN apt-get update
-RUN apt-get install -y docker-engine
-
 
 RUN apt-get install -y make build-essential libssl-dev zlib1g-dev
 RUN apt-get install -y libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm
