@@ -9,12 +9,13 @@ ENV DEBIAN_FRONTEND noninteractive
 ########################################
 #### update ubuntu and Install Python 3
 ########################################
-RUN apt-get update -y && \
-    apt-get install -y apt-utils automake pkg-config libpcre3-dev zlib1g-dev liblzma-dev && \
-    apt-get install -y git curl build-essential software-properties-common libsqlite3-dev sqlite3 bzip2 libbz2-dev git python3-pip python3-setuptools python3-dev python3-venv && \
-    apt-get install -y sudo && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update -y && apt-get install -y make build-essential git libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev
+
+RUN wget https://www.python.org/ftp/python/3.5.3/Python-3.5.3.tgz \ 
+	&& tar xzf Python-3.5.3.tgz \ 
+	&& cd Python-3.5.3  && ./configure \
+	&& make install
 
 ########################################
 #### ------- OpenJDK Installation ------
@@ -128,5 +129,4 @@ RUN ln -s ${JAVA_HOME_ACTUAL} ${JAVA_HOME} && \
     pip3 --version
 
 CMD ["/bin/bash"]
-
 
